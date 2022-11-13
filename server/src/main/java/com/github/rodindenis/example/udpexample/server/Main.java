@@ -1,4 +1,4 @@
-package com.github.rodindenis.example.udpexample;
+package com.github.rodindenis.example.udpexample.server;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -11,12 +11,11 @@ public class Main {
         DatagramPacket packet = new DatagramPacket(buf, buf.length);
         DatagramSocket socket = new DatagramSocket(50_000);
         socket.receive(packet);
-
         InetAddress address = packet.getAddress();
         int port = packet.getPort();
+        String received = new String(packet.getData(), 0, packet.getLength());
+        System.out.println("Received: " + received);
         packet = new DatagramPacket(buf, buf.length, address, port);
-        String received
-                = new String(packet.getData(), 0, packet.getLength());
         socket.send(packet);
         socket.close();
     }
