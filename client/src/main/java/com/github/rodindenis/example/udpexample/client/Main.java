@@ -16,6 +16,5 @@ public class Main {
         String received = new String(
                 packet.getData(), 0, packet.getLength());
         System.out.println("Received: " + received);
-
     }
 }
